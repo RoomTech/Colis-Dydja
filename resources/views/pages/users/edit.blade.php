@@ -13,24 +13,24 @@
 
     </div>
     <!-- General elements -->
-    <h4 class="mb-6 text-lg font-semibold text-gray-600 dark:text-gray-300">
-        Ajouter un nouveau chef de gare au sein de la compagnie
+    <h4 class="mb-6 text-lg font-semibold text-orange-400 dark:text-gray-300">
+        Mettre à jour des informations
     </h4>
 </div>
-
 <div class="flex justify-center">
     <div class="px-5 py-2 mb-2 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div class="flex justify-center">
             <div class=" dark:bg-gray-800">
-                <form action="{{ route('users.store') }}" method="post">
+                <form action="{{ route('users.update',$user) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="flex justify-between space-x-4 p-3 ">
                         <div class="w-1/2 space-y-4">
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Nom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" name="lastName" required />
+                                    placeholder="Jane" name="lastName" value="{{ $user->lastName }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -38,7 +38,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Prénom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="firstName" required />
+                                    placeholder="Doe" name="firstName" value="{{ $user->firstName }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -46,7 +46,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Email</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="joe@gmail.com" name="email" required />
+                                    placeholder="joe@gmail.com" name="email" value="{{ $user->email }}" required />
                             </label>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="XXXXXXx" name="phoneNumber" />
+                                    placeholder="XXXXXXx" name="phoneNumber" value="{{ $user->phoneNumber }}" />
                             </label>
                         </div>
                         <div class="w-full space-y-4">
@@ -65,7 +65,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">
                                     Status de l'employé
                                 </span>
-                                <select
+                                <select value="{{ $user->accountStatus }}"
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                     name="accountStatus">
                                     <option value="other"></option>
@@ -85,7 +85,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">
                                     Compagnie
                                 </span>
-                                <select name="compagnie_id"
+                                <select name="compagnie_id" value="{{ $user->compagnie_id }}"
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                     <option value="other"></option>
                                     @foreach($compagny as $compagnies)
@@ -103,21 +103,10 @@
                             Enregistrer
                         </button>
                     </div>
-
-
-
-
                 </form>
             </div>
         </div>
-
-
-
-
     </div>
-
-
-
 </div>
 
 @endsection

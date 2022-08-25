@@ -1,17 +1,30 @@
 @extends('template.layouts.master')
 @section('content')
-<div class="flex items-center  p-6 bg-gray-50 dark:bg-gray-900">
-    <div class="flex-1  max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+<div class="container px-6 mx-auto grid">
+    <!-- CTA -->
+    <div class='flex justify-end'>
+        <div class="px-6 my-6">
+            <a href="{{ route('packages.index') }}"
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-900 border border-transparent rounded-lg active:bg-green-300 hover:bg-green-300 focus:outline-none focus:shadow-outline-purple">
+                Retour
+                <span class="ml-2" aria-hidden="true">+</span>
+            </a>
+        </div>
+    </div>
+    <!-- General elements -->
+    <h3 class="mb-1 text-xl font-semibold text-gray-600 dark:text-gray-300">
+        Ajouter un colis
+    </h3>
+</div>
+<div class="flex items-center p-6 bg-gray-50 dark:bg-gray-900">
+    <div class="flex-1 max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
         <div class="flex flex-col overflow-y-auto">
 
-            <div class="flex items-center justify-center p-6 sm:p-12">
+            <div class="flex items-center justify-center p-3 sm:p-12">
                 <div class="w-full">
-                    <!--<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                    <!--<h1 class="  font-semibold text-gray-700 dark:text-gray-200">
                         Ajouter un nouveau colis
                     </h1>-->
-                    <h3 class="mb-2 font-semibold text-gray-600 dark:text-gray-300">
-                        Ajouter un colis
-                    </h3>
                     <div class="flex justify-center">
                         <form action="{{ route('packages.store') }}" method="post">
                             @csrf

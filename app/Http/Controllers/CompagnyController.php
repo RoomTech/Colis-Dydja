@@ -17,9 +17,9 @@ class CompagnyController extends Controller
     public function index()
     {
         //
-        $compagny = Compagny::paginate(10);
+        $compagnies = Compagny::paginate(10);
         //dd($compagny);
-        return view('pages.compagny.index',['compagny'=>$compagny]);
+        return view('pages.compagny.index',['compagnies'=>$compagnies]);
     }
 
     /**
@@ -57,7 +57,7 @@ class CompagnyController extends Controller
         $matricule = Str::random(5);
 
        //Traitement des data 
-      $compagnie = Compagny::create([
+      $compagnies = Compagny::create([
             'identifier'=>$matricule,
             'nameOfCompagny'=>$request->nameOfCompagny,
             'nameOwner'=>$request->nameOwner,
@@ -84,8 +84,8 @@ class CompagnyController extends Controller
      */
     public function show(Compagny $compagny)
     {
-        //
-        $compagny = Compagny::find($compagny);
+        //Détails du champs
+        //$compagny = Compagny::find($compagny);
         return view("pages.compagny.show",["compagny"=>$compagny]);
     }
 
@@ -98,7 +98,7 @@ class CompagnyController extends Controller
     public function edit(Compagny $compagny)
     {
         //
-        return view("pages.compagny.edit");
+        return view("pages.compagny.edit",["compagny"=>$compagny]);
     }
 
     /**
@@ -110,17 +110,30 @@ class CompagnyController extends Controller
      */
     public function update(Request $request, Compagny $compagny)
     {
-        //
-         $compagnie = Compagny::create([
-            'nameOfCompagny'=>$request->nameOfCompagny,
-            'nameOwner'=>$request->nameOwner,
-            'street_id'=>$request->street_id,
-            'openingHours'=>$request->openingHours,
-            'closingTime'=>$request->closingTime,
-            'numberEmployment'=>$request->numberEmployment,
-       ]);
-
-       session()->flash("success","Mise à jour effectué avec succès!");
+          //	Validation des champs du form pour la mise à jour 
+          $validated = $request->validate([
+            'nameOfCompagny' => 'required|unique:compagnies|max:255',
+            'nameOwner' => 'required',
+            'street_id'=>'required',
+            'openingHours'=>'required',
+            'closingTime'=>'required',
+            'numberEmployment'=>'required|integer',
+            'phoneNumber'=>'required',
+        ]);
+        
+        //Traitement du form pour la mise à jour
+        $users = $compagny->update([
+            "nameOfCompagny" => $request->nameOfCompagny,
+            "nameOwner" => $request->nameOwner,
+            "street_id" => $request->street_id,
+            "openingHours" => $request->openingHours,
+            "closingTime" => $request->closingTime,
+            "numberEmployment" => $request->numberEmployment,
+            "phoneNumber" => $request->phoneNumber,
+         ]);
+         dd($users);
+         toast("Mise à jour effectué avec succès!","warning");
+         return redirect()->route('compagnies.index');
     }
 
     /**
@@ -131,9 +144,9 @@ class CompagnyController extends Controller
      */
     public function destroy(Compagny $compagny)
     {
-        //
-        //$compagny = Compagny::find($compagny);
-        $compagny->destroy;
+        //Suppression d'une compagnie
+        $compagny->delete();
+        toast("La compagnie" . $compagny->nameOfCompagny . "supprimé avec succès!","error");
         return redirect()->route('compagnies.index');
     }
 }

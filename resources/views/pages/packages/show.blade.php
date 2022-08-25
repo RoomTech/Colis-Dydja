@@ -21,9 +21,7 @@
 
             <div class="flex items-center justify-center p-6 sm:p-12">
                 <div class="w-full">
-                    <!--<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        Ajouter un nouveau colis
-                    </h1>-->
+
                     <h3 class="mb-2 font-semibold text-gray-600 dark:text-gray-300">
                         Détails du colis
                     </h3>
@@ -34,39 +32,50 @@
 
                                 <div class=" space-y-4">
                                     <label for="">Nom de l'expéditeur:</label>
-                                    {{ $package->lastNameExpeditor }}
+                                    <span class="text-bold-100 px-2 py-1 font-semibold">
+                                        {{ $package->lastNameExpeditor }} </span>
                                 </div>
 
                                 <div class="w-1/2 space-y-4">
                                     <label for="">Prénom de l'expéditeur:</label>
-                                    {{ $package->firstNameRecipient }}
+                                    <span class="text-bold-100 px-2 py-1 font-semibold">
+                                        {{ $package->firstNameRecipient }}</span>
+
                                 </div>
 
                                 <div class=" space-y-4">
                                     <label for="">Téléphone de l'expéditeur</label>
-                                    {{ $package->phoneNumberExpeditor }}
+                                    <span class="text-bold-100 px-2 py-1 font-semibold">
+                                        {{ $package->phoneNumberExpeditor }}</span>
+
                                 </div>
                             </div>
 
                             <div class="flex justify-between space-x-4 p-3 ">
                                 <div class="w-1/2 space-y-4">
                                     <label for="">Nom du destinataire : </label>
-                                    {{ $package->lastNameRecipient }}
+                                    <span class="text-bold-100 px-2 py-1 font-semibold">
+                                        {{ $package->lastNameRecipient }}</span>
+
                                 </div>
                                 <div class="w-1/2 space-y-4">
                                     <label for="">Prénom du destinataire : </label>
-                                    {{ $package->firstNameRecipient }}
+                                    <span
+                                        class="text-bold-100 px-2 py-1 font-semibold">{{ $package->firstNameRecipient }}</span>
                                 </div>
                                 <div class=" space-y-4">
                                     <label for="">Téléphone du destiataire : </label>
-                                    {{ $package->phoneNumberRecipient }}
+                                    <span
+                                        class="text-bold-100 px-2 py-1 font-semibold">{{ $package->phoneNumberRecipient }}</span>
                                 </div>
                             </div>
 
                             <div class="flex justify-between space-x-3 p-3 ">
                                 <div class="w-full space-y-4">
                                     <label for="">Prix du colis : </label>
-                                    {{ $package->pricesPackages }} Fcfa
+                                    <span class="text-bold-100 px-2 py-1 font-semibold"> {{ $package->pricesPackages }}
+                                        Fcfa</span>
+
                                 </div>
                                 <div class="w-full space-y-4">
                                     <label for="">Status d'envoi du colis : </label>
@@ -79,7 +88,8 @@
                             <div class="flex justify-between  space-x-3 p-3 ">
                                 <div class="w-full space-y-6 space-x-3">
                                     <label for="">Description du colis : </label>
-                                    {{ $package->descriptionPackages }}
+                                    <span
+                                        class="text-bold-100 px-2 py-1 font-semibold">{{ $package->descriptionPackages }}</span>
                                 </div>
                             </div>
                             <!-- You should use a button here, as the anchor is only used for the example  -->

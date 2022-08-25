@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Compagny;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Models\Role;
+
 
 class UserController extends Controller
 {
@@ -26,7 +31,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.users.create');
+        $compagny = Compagny::all();
+        return view('pages.users.create',["compagny"=>$compagny]);
     }
 
     /**
@@ -38,6 +44,34 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated = $request->validate([
+        'lastName'=>'required|string|max:155',
+        'firstName'=>'required|string|max:155',
+        'email'=>'required|unique:users',
+        'phoneNumber'=>'required',
+        'accountStatus'=>'required',
+        'compagnie_id'=>'required',
+        ]);
+
+        //dd($validated);
+        $matricule = Str::random(5);
+        $passwordGenerate = Str::random(8);
+
+        $users = User::create([
+            'identifier'=> $matricule,
+            'lastName'=>$request->lastName,
+            'firstName'=>$request->firstName,
+            'email'=>$request->email,
+            'phoneNumber'=>$request->phoneNumber,
+            'password'=>bcrypt($passwordGenerate),
+            'accountStatus'=>$request->accountStatus,
+            'compagnie_id'=>$request->compagny_id,
+            'role_id'=> Role::Station_manager,
+        ]);
+        //dd($users);
+        toast(" L'employé" . $users->fullName . " enregistré avec succès ","success");
+        return redirect()->route('users.index');
     }
 
     /**
@@ -49,6 +83,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
+        return view("pages.users.show",["user"=>$user]);
     }
 
     /**
@@ -60,6 +95,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        
+        $compagny = Compagny::all();
+        return view ("pages.users.edit",["user"=>$user,"compagny"=>$compagny]);
     }
 
     /**
@@ -72,6 +110,35 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        
+        $validated = $request->validate([
+        'lastName'=>'required|string|max:155',
+        'firstName'=>'required|string|max:155',
+        'email'=>'required|unique:users',
+        'phoneNumber'=>'required',
+        'accountStatus'=>'required',
+        'compagnie_id'=>'required',
+        ]);
+
+        //dd($validated);
+        //dd("mum");
+        $matricule = Str::random(5);
+        $passwordGenerate = Str::random(8);
+
+      $users = $user->update([
+            'identifier'=> $matricule,
+            'lastName'=>$request->lastName,
+            'firstName'=>$request->firstName,
+            'email'=>$request->email,
+            'phoneNumber'=>$request->phoneNumber,
+            'password'=>bcrypt($passwordGenerate),
+            'accountStatus'=>$request->accountStatus,
+            'compagnie_id'=>$request->compagny_id,
+            'role_id'=> Role::Station_manager,
+        ]);
+       // dd($users);
+        toast(" Mise à jour effectué avec succès ","success");
+        return redirect()->route('users.index');
     }
 
     /**
@@ -83,5 +150,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        toast("Suppression effectué avec succès","error");
+        return redirect()->route('users.index');
     }
 }

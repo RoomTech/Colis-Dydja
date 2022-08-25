@@ -110,6 +110,33 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
     {
         //
+        $validated = $request->validate([
+           'lastNameExpeditor'=>'required|string|max:155',
+           'firstNameExpeditor'=>'required|string|max:155',
+           'phoneNumberExpeditor'=>'required',
+           'lastNameRecipient'=>'required',
+           'firstNameRecipient'=>'required',
+           'phoneNumberRecipient'=>'required',
+           'packageStatus'=>'required',
+           'descriptionPackages'=>'required',
+           'pricesPackages'	=>'required',     
+        ]);
+ 
+       $package->update([
+        "lastNameExpeditor" => $request->lastNameExpeditor,
+        "firstNameExpeditor" => $request->firstNameExpeditor,
+        "phoneNumberExpeditor" => $request->phoneNumberExpeditor,
+        "lastNameRecipient"=>$request->lastNameRecipient,
+        "firstNameRecipient"=>$request->firstNameRecipient,
+        "phoneNumberRecipient"=>$request->phoneNumberRecipient,
+        "packageStatus"=>$request->packageStatus,
+        "descriptionPackages"=>$request->descriptionPackages,
+        "pricesPackages"=>$request->pricesPackages
+    ]);
+        //dd($users);
+       
+        toast("Modification effectuée avec succès","warning");
+        return redirect()->route('packages.index');
     }
 
     /**

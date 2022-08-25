@@ -26,8 +26,9 @@
                         Modifier les informations du colis
                     </h3>
                     <div class="flex justify-center">
-                        <form action="{{ route('packages.update') }}" method="put">
+                        <form action="{{ route('packages.update',$package) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="flex justify-between space-x-4 p-3 ">
 
                                 <div class=" space-y-4">
@@ -37,7 +38,7 @@
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                             placeholder="Doe" name="lastNameExpeditor"
-                                            value="{{ old('lastNameExpeditor') }}" />
+                                            value="{{ $package->lastNameExpeditor }}" />
                                     </label>
                                     @error('lastNameExpeditor')
                                     <span class=" text-red-500">{{ $message }}</span>
@@ -51,7 +52,7 @@
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                             placeholder="joe" name="firstNameExpeditor"
-                                            value="{{ old('firstNameExpeditor') }}" required />
+                                            value="{{ $package->firstNameExpeditor }}" required />
                                     </label>
                                     @error('firstNameRecipient')
                                     <span class="text-red-500">{{ $message }}</span>
@@ -63,12 +64,9 @@
                                         <span class="text-gray-700 dark:text-gray-400">Téléphone de l'expéditeur</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="XXXXXXx" value="{{ old('phoneNumberExpeditor') }}" name="
-                                            phoneNumberExpeditor" />
+                                            placeholder="XXXXXXx" name="phoneNumberExpeditor"
+                                            value="{{ $package->phoneNumberExpeditor }}" />
                                     </label>
-                                    @error('phoneNumberExpeditor')
-                                    <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -80,7 +78,7 @@
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                             placeholder="Jane" name="lastNameRecipient"
-                                            value="{{ old('lastNameRecipient') }}" required />
+                                            value="{{ $package->lastNameRecipient }}" required />
                                     </label>
                                     @error('lastNameRecipient')
                                     <span class="text-red-500">{{ $message }}</span>
@@ -93,7 +91,7 @@
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                             placeholder="Doe" name="firstNameRecipient"
-                                            value="{{ old('firstNameRecipient') }}" required />
+                                            value="{{ $package->firstNameRecipient }}" required />
                                     </label>
                                     @error('firstNameRecipient')
                                     <span class="text-red-500">{{ $message }}</span>
@@ -104,7 +102,7 @@
                                         <span class="text-gray-700 dark:text-gray-400">Téléphone du destinataire</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="XXXXXXx" value="{{ old('phoneNumberRecipient') }}"
+                                            placeholder="XXXXXXx" value="{{ $package->phoneNumberRecipient }}"
                                             name="phoneNumberRecipient" />
                                     </label>
                                 </div>
@@ -119,7 +117,7 @@
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                             placeholder="1000" name="pricesPackages"
-                                            value="{{ old('pricesPackages') }}" />
+                                            value="{{ $package->pricesPackages }}" />
                                     </label>
                                     @error('pricesPackages')
                                     <span class="text-red-500">{{ $message }}</span>
@@ -132,7 +130,7 @@
                                         </span>
                                         <select
                                             class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            name="packageStatus" value="{{ old('packageStatus') }}">
+                                            name="packageStatus" value="{{ $package->packageStatus }}">
                                             <option value="other"></option>
                                             <option value="en cours">En cours
                                             </option>
@@ -149,7 +147,7 @@
                                 <div class="w-full space-y-6 space-x-3">
                                     <label class="block text-sm">
                                         <span class="text-gray-700 dark:text-gray-400">Description du colis</span>
-                                        <textarea name="descriptionPackages" value="{{ old('descriptionPackages') }}"
+                                        <textarea name="descriptionPackages" value="{{ $package->descriptionPackages }}"
                                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                             rows="3" placeholder="Enter some long form content."></textarea>
                                     </label>
