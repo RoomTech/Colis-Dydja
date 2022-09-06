@@ -53,10 +53,10 @@ class CompagnyController extends Controller
             'phoneNumber'=>'required',
         ]);
         // dd($validated);
-        
+        $street = Street::find($request->street); // pour recuperer l'id de la commune selectionnéé
         $matricule = Str::random(5);
 
-       //Traitement des data 
+       //On creer notre compagny dynamiquement
       $compagnies = Compagny::create([
             'identifier'=>$matricule,
             'nameOfCompagny'=>$request->nameOfCompagny,
@@ -67,7 +67,9 @@ class CompagnyController extends Controller
             'numberEmployment'=>$request->numberEmployment,
             'phoneNumber'=>$request->phoneNumber
        ]);
-        //dd($compagnie);
+       
+       // Une fois qu'on les deux enregistrement fait on fait la relation attache entre les deux. Laravel se charge du reste
+        $compagnies->streets()->attach($street);// on attache la commune a la compagnie
 
        //session()->flash("success","Inscription effectué avec succès!");
        toast('Enregistrement effectué avec succès','success');
