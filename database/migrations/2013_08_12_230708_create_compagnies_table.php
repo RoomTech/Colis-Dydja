@@ -19,11 +19,10 @@ return new class extends Migration
             $table->id();
             $table->string('identifier');
             $table->string('nameOfCompagny');
-            $table->string('nameOwner');
-            $table->foreignIdFor(Street::class)->constrained()->onDelete('cascade');
-            $table->string('openingHours');
-            $table->string('closingTime');
-            $table->string('numberEmployment');
+            $table->string('name_owner')->nullable();
+            $table->string('openingHours')->nullable();
+            $table->string('closingTime')->nullable();
+            $table->string('numberEmployment')->nullable();
             $table->string('phoneNumber')->unique();
             $table->softDeletes();
             $table->timestamps();

@@ -9,7 +9,7 @@ use App\Models\User;
 
 class Package extends Model
 {
-    use HasFactory; use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 

@@ -6,6 +6,7 @@ use App\Models\Street;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Compagny extends Model
@@ -19,7 +20,8 @@ class Compagny extends Model
         return $this->hasMany(User::class);
     }
     //Relation street et compagnie
-    public function street(){
-        return $this->belongsToMany(Street::class);
+    public function streets() : BelongsToMany
+    {
+        return $this->belongsToMany(Street::class, 'compagny_streets');
     }
 }

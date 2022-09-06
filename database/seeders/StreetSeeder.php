@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Compagny;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class StreetSeeder extends Seeder
 {
@@ -15,12 +17,23 @@ class StreetSeeder extends Seeder
     public function run()
     {
         //
-        \App\Models\Street::create([
+       $adjame =  \App\Models\Street::create([
             "name"=>"Adjamé"
         ]);
         
-         \App\Models\Street::create([
+       $yopougon =   \App\Models\Street::create([
             "name"=>"Yopougon"
         ]);
+
+       $compagny =  Compagny::create([
+          'nameOfCompagny' => 'UTB',
+          'identifier' => Str::uuid(),
+          'phoneNumber' => '+22509876543',
+        ]);
+
+        $compagny->streets()->attach($adjame);
+        $compagny->streets()->attach($yopougon);
+
+      
     }
 }
