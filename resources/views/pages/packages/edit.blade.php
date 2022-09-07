@@ -19,9 +19,6 @@
 
             <div class="flex items-center justify-center p-6 sm:p-12">
                 <div class="w-full">
-                    <!--<h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        Ajouter un nouveau colis
-                    </h1>-->
                     <h3 class="mb-2 font-semibold text-gray-600 dark:text-gray-300">
                         Modifier les informations du colis
                     </h3>

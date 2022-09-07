@@ -5,7 +5,7 @@
     <div class='flex justify-end'>
         <div class="px-6 my-6">
             <a href="{{ route('users.index') }}"
-                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-900 border border-transparent rounded-lg active:bg-green-300 hover:bg-green-300 focus:outline-none focus:shadow-outline-purple">
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-900 border border-transparent rounded-lg active:bg-green-300 hover:bg-green-300 focus:outline-none focus:shadow-outline-green">
                 Retour
                 <span class="ml-2" aria-hidden="true">+</span>
             </a>
@@ -30,7 +30,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" name="lastName" required />
+                                    placeholder="Jane" name="lastname" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -38,7 +38,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Prénom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="firstName" required />
+                                    placeholder="Doe" name="firstname" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -57,7 +57,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="XXXXXXx" name="phoneNumber" />
+                                    placeholder="XXXXXXx" name="phone_number" />
                             </label>
                         </div>
                         <div class="w-full space-y-4">
@@ -67,12 +67,12 @@
                                 </span>
                                 <select
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    name="accountStatus">
+                                    name="profil">
                                     <option value="other"></option>
-                                    <option value="employment">Employé</option>
-                                    <option value="licencie">Licencié</option>
-                                    <option value="vacance">En congé</option>
-                                    <option value="other">Autre</option>
+                                    <option value="Employé">Employé</option>
+                                    <option value="Licencié">Licencié</option>
+                                    <option value="En congé">En congé</option>
+                                    <option value="Autre">Autre</option>
                                 </select>
                             </label>
                         </div>
@@ -99,7 +99,7 @@
                     <!-- You should use a button here, as the anchor is only used for the example  -->
                     <div class=" flex justify-end">
                         <button type="submit"
-                            class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
                             Enregistrer
                         </button>
                     </div>

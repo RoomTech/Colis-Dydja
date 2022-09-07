@@ -26,13 +26,16 @@ class LoginController extends Controller
         //recuperons le dernier email 
 
         $user = User::whereEmail($request->email)->first();
+        
+       /// dd(Hash::check($request->password,$user->password));
+        
         if($user && Hash::check($request->password,$user->password)){
             Auth::login($user);
-            session()->flash('success','Binevenue' . $request->fullName );
+            toast(' Bienvenue ' . $user->fullname ,'success');
             return redirect()->route('home');
             
         }
-        session()->flash('error','E-mail ou mot de passe incorrect!');
+       toast('error','E-mail ou mot de passe incorrect!','error');
        return back();
     }
 

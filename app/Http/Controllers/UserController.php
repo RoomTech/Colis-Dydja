@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::paginate(10);
+        $users = User::orderBy('created_at','desc')->paginate(5);
         return view('pages.users.index',compact('users'));
     }
 
@@ -46,11 +46,11 @@ class UserController extends Controller
         //
 
         $validated = $request->validate([
-        'lastName'=>'required|string|max:155',
-        'firstName'=>'required|string|max:155',
+        'lastname'=>'required|string|max:155',
+        'firstname'=>'required|string|max:155',
         'email'=>'required|unique:users',
-        'phoneNumber'=>'required',
-        'accountStatus'=>'required',
+        'phone_number'=>'required',
+        'profil'=>'required',
         'compagnie_id'=>'required',
         ]);
 
@@ -60,17 +60,17 @@ class UserController extends Controller
 
         $users = User::create([
             'identifier'=> $matricule,
-            'lastName'=>$request->lastName,
-            'firstName'=>$request->firstName,
+            'lastname'=>$request->lastName,
+            'firstname'=>$request->firstName,
             'email'=>$request->email,
-            'phoneNumber'=>$request->phoneNumber,
+            'phone_number'=>$request->phoneNumber,
             'password'=>bcrypt($passwordGenerate),
-            'accountStatus'=>$request->accountStatus,
+            'profil'=>$request->profil,
             'compagnie_id'=>$request->compagny_id,
             'role_id'=> Role::Station_manager,
         ]);
         //dd($users);
-        toast(" L'employé" . $users->fullName . " enregistré avec succès ","success");
+        toast("L'employé" . $users->fullname . " enregistré avec succès vérifier votre e-mail ","success");
         return redirect()->route('users.index');
     }
 
@@ -112,11 +112,11 @@ class UserController extends Controller
         //
         
         $validated = $request->validate([
-        'lastName'=>'required|string|max:155',
-        'firstName'=>'required|string|max:155',
+        'lastname'=>'required|string|max:155',
+        'firstname'=>'required|string|max:155',
         'email'=>'required|unique:users',
-        'phoneNumber'=>'required',
-        'accountStatus'=>'required',
+        'phone_number'=>'required',
+        'profil'=>'required',
         'compagnie_id'=>'required',
         ]);
 
@@ -127,12 +127,12 @@ class UserController extends Controller
 
       $users = $user->update([
             'identifier'=> $matricule,
-            'lastName'=>$request->lastName,
-            'firstName'=>$request->firstName,
+            'lastname'=>$request->lastname,
+            'firstname'=>$request->firstname,
             'email'=>$request->email,
-            'phoneNumber'=>$request->phoneNumber,
+            'phone_number'=>$request->phone_number,
             'password'=>bcrypt($passwordGenerate),
-            'accountStatus'=>$request->accountStatus,
+            'profil'=>$request->profil,
             'compagnie_id'=>$request->compagny_id,
             'role_id'=> Role::Station_manager,
         ]);

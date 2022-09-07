@@ -15,12 +15,17 @@ class StreetSeeder extends Seeder
     public function run()
     {
         //
-        \App\Models\Street::create([
+       $adjame = \App\Models\Street::create([
             "name"=>"Adjamé"
         ]);
         
-         \App\Models\Street::create([
+        $yopougon = \App\Models\Street::create([
             "name"=>"Yopougon"
         ]);
+        
+        //lions les tables lors de l'enregistrement
+        
+
+
     }
 }

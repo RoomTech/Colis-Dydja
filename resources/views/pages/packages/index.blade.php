@@ -6,7 +6,7 @@
     <div class='flex justify-end'>
         <div class="px-4 my-6">
             <a href="{{ route('packages.create') }}"
-                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-800 border border-transparent rounded-lg active:bg-blue-800 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
                 Ajouter un colis
                 <span class="ml-2" aria-hidden="true">+</span>
             </a>
@@ -27,13 +27,8 @@
                         <th class="px-4 py-3">Matricule</th>
                         <th class="px-4 py-3">Destinataire</th>
                         <th class="px-4 py-3">Expéditeur</th>
-                        <!--<th class="px-4 py-3">Nom du chef de gare</th>
-                        <th class="px-4 py-3">Télephone du chef de gare</th>-->
                         <th class="px-4 py-3">Type de colis</th>
-                        <!--<th class="px-4 py-3">Prix d'envoi du colis</th>-->
                         <th class="px-4 py-3">Status du colis</th>
-                        <!--<th class="px-4 py-3">Télephone du destinataire</th>-->
-                        <!--<th class="px-4 py-3">Nom/Adresse de la compagnie</th>-->
                         <th class="px-4 py-3">Actions</th>
                     </tr>
                 </thead>
@@ -46,15 +41,15 @@
                         </td>
 
                         <td class="px-4 py-3 text-sm">
-                            {{ $package->fullNameRecipient }}
+                            {{ $package->fullname_recipient }}
                         </td>
 
                         <td class="px-4 py-3 text-sm">
-                            {{ $package->fullNameExpeditor }}
+                            {{ $package->fullname_expeditor }}
                         </td>
 
                         <td class="px-4 py-3 text-center text-sm">
-                            {{ $package->descriptionPackages }}
+                            {{ $package->description_package }}
                         </td>
 
                         <!--<td class="px-4 py-3 text-center text-sm">
@@ -64,7 +59,7 @@
                         <td class="px-4 py-3 text-xs">
                             <span
                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{ $package->packageStatus }}
+                                {{ $package->package_status }}
                             </span>
                         </td>
 
@@ -110,6 +105,12 @@
                 </tbody>
                 @endforeach
             </table>
+            <div
+                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-3 dark:text-gray-400 dark:bg-gray-800">
+                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end ">
+                    {{ $packages->links() }}
+                </span>
+            </div>
         </div>
 
     </div>

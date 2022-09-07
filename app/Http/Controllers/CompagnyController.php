@@ -17,7 +17,7 @@ class CompagnyController extends Controller
     public function index()
     {
         //
-        $compagnies = Compagny::paginate(10);
+        $compagnies = Compagny::orderBy('created_at','desc')->paginate(5);
         //dd($compagny);
         return view('pages.compagny.index',['compagnies'=>$compagnies]);
     }
@@ -44,33 +44,41 @@ class CompagnyController extends Controller
     {
         //	Validation des champs
       $validated = $request->validate([
-            'nameOfCompagny' => 'required|unique:compagnies|max:255',
-            'nameOwner' => 'required',
-            'street_id'=>'required',
-            'openingHours'=>'required',
-            'closingTime'=>'required',
-            'numberEmployment'=>'required|integer',
-            'phoneNumber'=>'required',
+            'name' => 'required|unique:compagnies|max:255',
+            'name_owner' => 'required',
+           // 'street_id'=>'required',
+            'number_employment'=>'required|integer',
+            'phone_number'=>'required',
         ]);
-        // dd($validated);
         
+        /**
+         * Recupere l'id de la commune selectionné qui n'est pas dans la table compagnie
+         * Vue que c'est une relation many to many 
+         * je donne un name dans le select de la street
+         */
+        $commune = Street::find($request->street);
         $matricule = Str::random(5);
 
        //Traitement des data 
       $compagnies = Compagny::create([
             'identifier'=>$matricule,
-            'nameOfCompagny'=>$request->nameOfCompagny,
-            'nameOwner'=>$request->nameOwner,
-            'street_id'=>$request->street_id,
-            'openingHours'=>$request->openingHours,
-            'closingTime'=>$request->closingTime,
-            'numberEmployment'=>$request->numberEmployment,
-            'phoneNumber'=>$request->phoneNumber
+            'name'=>$request->name,
+            'name_owner'=>$request->name_owner,
+            //'street_id'=>$request->street_id,
+            'number_employment'=>$request->number_employment,
+            'phone_number'=>$request->phone_number,
        ]);
-        //dd($compagnie);
-
+        //dd($compagnie);dd($request);
+       
+        /**
+         * Lions nos deux tables via attach
+         * streets() la methode qui se trouve in Compagny
+         * $commune la variable qui contient la requête
+         * on attache la commune a la compagnie
+         */
+        $compagnies->streets()->attach($commune);
        //session()->flash("success","Inscription effectué avec succès!");
-       toast('Enregistrement effectué avec succès','success');
+       toast(' La compagnie ' . $request->name .' a été enregistré','success');
 
        return redirect()->route('compagnies.index');
       
@@ -98,7 +106,9 @@ class CompagnyController extends Controller
     public function edit(Compagny $compagny)
     {
         //
-        return view("pages.compagny.edit",["compagny"=>$compagny]);
+        //dd($compagny);
+         $commune = Street::all();
+        return view("pages.compagny.edit",compact("commune","compagny"));
     }
 
     /**
@@ -112,26 +122,22 @@ class CompagnyController extends Controller
     {
           //	Validation des champs du form pour la mise à jour 
           $validated = $request->validate([
-            'nameOfCompagny' => 'required|unique:compagnies|max:255',
-            'nameOwner' => 'required',
+            'name' => 'required|unique:compagnies|max:255',
+            'name_owner' => 'required',
             'street_id'=>'required',
-            'openingHours'=>'required',
-            'closingTime'=>'required',
-            'numberEmployment'=>'required|integer',
-            'phoneNumber'=>'required',
+            'number_employment'=>'required|integer',
+            'phone_number'=>'required',
         ]);
         
         //Traitement du form pour la mise à jour
         $users = $compagny->update([
-            "nameOfCompagny" => $request->nameOfCompagny,
-            "nameOwner" => $request->nameOwner,
+            "name" => $request->name,
+            "name_owner" => $request->name_owner,
             "street_id" => $request->street_id,
-            "openingHours" => $request->openingHours,
-            "closingTime" => $request->closingTime,
-            "numberEmployment" => $request->numberEmployment,
-            "phoneNumber" => $request->phoneNumber,
+            "number_employment" => $request->number_employment,
+            "phone_number" => $request->phone_number,
          ]);
-         dd($users);
+        // dd($users);
          toast("Mise à jour effectué avec succès!","warning");
          return redirect()->route('compagnies.index');
     }
@@ -146,7 +152,7 @@ class CompagnyController extends Controller
     {
         //Suppression d'une compagnie
         $compagny->delete();
-        toast("La compagnie" . $compagny->nameOfCompagny . "supprimé avec succès!","error");
+        toast("La compagnie" . $compagny->name . "supprimé avec succès!","error");
         return redirect()->route('compagnies.index');
     }
 }

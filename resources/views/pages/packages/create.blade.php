@@ -22,9 +22,6 @@
 
             <div class="flex items-center justify-center p-3 sm:p-12">
                 <div class="w-full">
-                    <!--<h1 class="  font-semibold text-gray-700 dark:text-gray-200">
-                        Ajouter un nouveau colis
-                    </h1>-->
                     <div class="flex justify-center">
                         <form action="{{ route('packages.store') }}" method="post">
                             @csrf
@@ -36,9 +33,9 @@
                                             l'expéditeur</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="Doe" name="lastNameExpeditor" />
+                                            placeholder="Doe" name="lastname_expeditor" />
                                     </label>
-                                    @error('lastNameExpeditor')
+                                    @error('lastname_expeditor')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -49,9 +46,9 @@
                                             l'expéditeur</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="joe" name="firstNameExpeditor" required />
+                                            placeholder="joe" name="firstname_expeditor" required />
                                     </label>
-                                    @error('firstNameRecipient')
+                                    @error('firstname_expeditor')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -61,9 +58,9 @@
                                         <span class="text-gray-700 dark:text-gray-400">Téléphone de l'expéditeur</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="XXXXXXx" name="phoneNumberExpeditor" />
+                                            placeholder="XXXXXXx" name="phone_expeditor" />
                                     </label>
-                                    @error('phoneNumberExpeditor')
+                                    @error('phone_expeditor')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -76,9 +73,9 @@
                                             destinataire</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="Jane" name="lastNameRecipient" required />
+                                            placeholder="Jane" name="lastname_recipient" required />
                                     </label>
-                                    @error('lastNameRecipient')
+                                    @error('lastname_recipient')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -88,9 +85,9 @@
                                             destinataire</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="Doe" name="firstNameRecipient" required />
+                                            placeholder="Doe" name="firstname_recipient" required />
                                     </label>
-                                    @error('firstNameRecipient')
+                                    @error('firstname_recipient')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -99,7 +96,7 @@
                                         <span class="text-gray-700 dark:text-gray-400">Téléphone du destinataire</span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="XXXXXXx" name="phoneNumberRecipient" />
+                                            placeholder="XXXXXXx" name="phone_recipient" />
                                     </label>
                                 </div>
                             </div>
@@ -112,9 +109,9 @@
                                         </span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="1000" name="pricesPackages" />
+                                            placeholder="1000" name="price_package" />
                                     </label>
-                                    @error('pricesPackages')
+                                    @error('price_packages')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -132,7 +129,7 @@
                                             <option value="terminé">terminé</option>
                                         </select>
                                     </label>
-                                    @error('packageStatus')
+                                    @error('package_status')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -142,11 +139,11 @@
                                 <div class="w-full space-y-6 space-x-3">
                                     <label class="block text-sm">
                                         <span class="text-gray-700 dark:text-gray-400">Description du colis</span>
-                                        <textarea name="descriptionPackages"
+                                        <textarea name="description_package"
                                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                             rows="3" placeholder="Enter some long form content."></textarea>
                                     </label>
-                                    @error('descriptionPackages')
+                                    @error('description_package')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -154,7 +151,7 @@
                             <!-- You should use a button here, as the anchor is only used for the example  -->
                             <div class="flex justify-end">
                                 <button type="submit"
-                                    class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                    class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
                                     Enregistrer
                                 </button>
                             </div>

@@ -17,14 +17,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('identifier');
-            $table->string('lastName');
-            $table->string('firstName');
-            $table->string('fullName')->virtualAs('CONCAT(lastName, " ",firstName )');
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->string('fullname')->virtualAs('CONCAT(lastname, " ",firstname )');
             $table->string('email')->unique()->nullable();
-            $table->string('phoneNumber')->unique();
+            $table->string('phone_number')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('accountStatus');
+            $table->string('profil');
             $table->foreignIdFor(Role::class)->constrained()->onDelete('cascade');
             $table->integer('company_id')->index()->nullable();
             $table->string('file')->nullable();

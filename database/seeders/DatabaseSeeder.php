@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
 
          \App\Models\User::create([
             'identifier'=>"CM08",
-            'lastName'=>"Konan",
-            'firstName'=>"Jean",
+            'lastname'=>"Konan",
+            'firstname'=>"Jean",
             'email' => 'test@example.com',
-            'phoneNumber'=>"+22509876543",
+            'phone_number'=>"+22509876543",
             'password'=> bcrypt("password"),
-            "accountStatus"=>"en cours",
+            "profil"=>"Employé",
             "role_id"=>Role::Administrator,
          ]);
 

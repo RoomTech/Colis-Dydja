@@ -12,8 +12,17 @@
         </div>
     </div>
     <!-- General elements -->
-    <h4 class="mb-6 text-lg font-semibold text-orange-400 dark:text-gray-300">
-        Ajouter de nouvelle compagnie
+    <h4 class="mb-6 text-lg font-semibold text-gray-600 dark:text-gray-300">
+        Modification des informations de la compagnie
+        <!--
+            NomJESTIN BRIGITTE
+
+Téléphone06 06 80 10 14
+
+Horairesapres midi
+
+Portable06 06 80 10 14
+        -->
     </h4>
 </div>
 
@@ -21,7 +30,7 @@
     <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800">
         <div class="flex justify-center">
             <div class=" dark:bg-gray-800">
-                <form action="{{ route('compagnies.update',$compagny) }}" method="put">
+                <form action="{{ route('compagnies.update',$compagny) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="flex justify-between space-x-4 p-3 ">
@@ -30,21 +39,22 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom de la compagnie</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" type="text" value="{{ $compagny->nameOfCompagny }}"
-                                    name="nameOfCompagny" />
+                                    placeholder="Jane" type="text" value="{{ $compagny->name }}" name="name" />
                             </label>
-                            @error('nameOfCompagny
+                            @error('name')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
+
                         <div class="w-1/2 space-y-4">
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Nom du propriétaire</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="nameOwner" value="{{ $compagny->nameOwner }}" type="text" />
+                                    placeholder="Doe" name="name_owner" value="{{ $compagny->name_owner }}"
+                                    type="text" />
                             </label>
-                            @error('nameOwner')
+                            @error('name_owner')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
@@ -53,13 +63,14 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="+225XXXXXX" name="phoneNumber" value="{{ $compagny->phoneNumber }}"
+                                    placeholder="+225XXXXXX" name="phone_number" value="{{ $compagny->phone_number }}"
                                     type="text" />
                             </label>
-                            @error('phoneNumber')
+                            @error('phone_number')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
+
                     </div>
 
                     <div class="flex justify-between space-x-4 p-3 ">
@@ -81,24 +92,6 @@
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <div class="w-full space-y-4">
-                            <label class="block  text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Heure d'ouverture
-                                </span>
-                                <select
-                                    class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    name="openingHours" value="{{ $compagny->openingHours }}">
-                                    <option value="other"></option>
-                                    <option value="partiellement(2h-3h)">2H-3H (Lundi)-6H30 (Les autres jours)</option>
-                                    <option value="Frequement(6h30)">6H30 (Tous Les autres jours)</option>
-                                </select>
-                            </label>
-                            @error('openingHours')
-                            <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
                     </div>
 
                     <div class="flex justify-between space-x-4 p-3 ">
@@ -107,22 +100,10 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nombre d'employés</span>
                                 <input
                                     class="block w-full px-6 py-6 mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="0" name="numberEmployment" value="{{ $compagny->numberEmployment }}"
+                                    placeholder="0" name="number_employment" value="{{ $compagny->number_employment }}"
                                     min="0" max=1000 type="number" />
                             </label>
-                            @error('numberEmployment')
-                            <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div class="w-full space-y-4">
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Heure de fermeture</span>
-                                <input
-                                    class="block w-full  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    name="closingTime" value="{{ $compagny->closingTime }}" type="text" />
-                            </label>
-                            @error('closingTime')
+                            @error('number_employment')
                             <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>

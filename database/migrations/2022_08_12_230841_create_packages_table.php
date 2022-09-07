@@ -17,17 +17,17 @@ return new class extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('identifier');
-            $table->string('lastNameExpeditor');
-            $table->string('firstNameExpeditor');
-            $table->string('fullNameExpeditor')->virtualAs('CONCAT(lastNameExpeditor, " ",firstNameExpeditor )');
-            $table->string('phoneNumberExpeditor');
-            $table->string('lastNameRecipient');
-            $table->string('firstNameRecipient');
-            $table->string('fullNameRecipient')->virtualAs('CONCAT(lastNameRecipient, " ",firstNameRecipient )');
-            $table->string('phoneNumberRecipient');
-            $table->string('packageStatus');
-            $table->string('descriptionPackages');
-            $table->string('pricesPackages');
+            $table->string('lastname_expeditor');
+            $table->string('firstname_expeditor');
+            $table->string('fullname_expeditor')->virtualAs('CONCAT(lastname_expeditor, " ",firstname_expeditor )');
+            $table->string('phone_expeditor');
+            $table->string('lastname_recipient');
+            $table->string('firstname_recipient');
+            $table->string('fullname_recipient')->virtualAs('CONCAT(lastname_recipient, " ",firstname_recipient )');
+            $table->string('phone_recipient');
+            $table->string('package_status');
+            $table->string('description_package');
+            $table->string('price_package');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

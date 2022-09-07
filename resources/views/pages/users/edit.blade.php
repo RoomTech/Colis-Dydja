@@ -30,7 +30,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" name="lastName" value="{{ $user->lastName }}" required />
+                                    placeholder="Jane" name="lastname" value="{{ $user->lastname }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -38,7 +38,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Prénom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="firstName" value="{{ $user->firstName }}" required />
+                                    placeholder="Doe" name="firstname" value="{{ $user->firstname }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -57,7 +57,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="XXXXXXx" name="phoneNumber" value="{{ $user->phoneNumber }}" />
+                                    placeholder="XXXXXXx" name="phone_number" value="{{ $user->phone_number }}" />
                             </label>
                         </div>
                         <div class="w-full space-y-4">
@@ -65,14 +65,14 @@
                                 <span class="text-gray-700 dark:text-gray-400">
                                     Status de l'employé
                                 </span>
-                                <select value="{{ $user->accountStatus }}"
+                                <select value="{{ $user->profil }}"
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    name="accountStatus">
+                                    name="profil">
                                     <option value="other"></option>
-                                    <option value="employment">Employé</option>
-                                    <option value="licencie">Licencié</option>
-                                    <option value="vacance">En congé</option>
-                                    <option value="other">Autre</option>
+                                    <option value="Employé">Employé</option>
+                                    <option value="Licencié">Licencié</option>
+                                    <option value="En congé">En congé</option>
+                                    <option value="Autre">Autre</option>
                                 </select>
                             </label>
                         </div>

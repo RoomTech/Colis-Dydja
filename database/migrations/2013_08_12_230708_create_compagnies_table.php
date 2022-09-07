@@ -18,13 +18,11 @@ return new class extends Migration
         Schema::create('compagnies', function (Blueprint $table) {
             $table->id();
             $table->string('identifier');
-            $table->string('nameOfCompagny');
-            $table->string('nameOwner');
-            $table->foreignIdFor(Street::class)->constrained()->onDelete('cascade');
-            $table->string('openingHours');
-            $table->string('closingTime');
-            $table->string('numberEmployment');
-            $table->string('phoneNumber')->unique();
+            $table->string('name');
+            $table->string('name_owner');
+            //$table->foreignIdFor(Street::class)->constrained()->onDelete('cascade');
+            $table->string('number_employment');
+            $table->string('phone_number')->unique();
             $table->softDeletes();
             $table->timestamps();
         });

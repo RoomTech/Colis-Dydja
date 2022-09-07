@@ -12,7 +12,7 @@
     <div class='flex justify-end'>
         <div class="px-4 my-6">
             <a href="{{ route('users.create') }}"
-                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-800 border border-transparent rounded-lg active:bg-blue-800 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
                 Ajouter un chef de gare
                 <span class="ml-2" aria-hidden="true">+</span>
             </a>
@@ -32,7 +32,7 @@
                         class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                         <th class="px-4 py-3">Matricule</th>
                         <th class="px-4 py-3">Nom complet</th>
-                        <th class="px-4 py-3">Status</th>
+                        <th class="px-4 py-3">Profil</th>
                         <th class="px-4 py-3">Télephone</th>
                         <th class="px-4 py-3">Nom/Adresse de la compagnie</th>
                         <th class="px-4 py-3">Actions</th>
@@ -56,9 +56,9 @@
                                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                                 </div>
                                 <div>
-                                    <p class="font-semibold">{{ $user->lastName }}</p>
+                                    <p class="font-semibold">{{ $user->lastname }}</p>
                                     <p class="text-xs text-gray-600 dark:text-gray-400">
-                                        {{ $user->firstName }}
+                                        {{ $user->firstname }}
                                     </p>
                                 </div>
                             </div>
@@ -69,12 +69,12 @@
                         <td class="px-4 py-3 text-xs">
                             <span
                                 class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                {{ $user->accountStatus}}
+                                {{ $user->profil}}
                             </span>
                         </td>
 
                         <td class="px-4 py-3 text-sm">
-                            {{$user->phoneNumber}}
+                            {{$user->phone_number}}
                         </td>
 
 
@@ -137,6 +137,12 @@
                 </tbody>
                 @endforeach
             </table>
+            <div
+                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-3 dark:text-gray-400 dark:bg-gray-800">
+                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end ">
+                    {{ $users->links() }}
+                </span>
+            </div>
         </div>
 
     </div>

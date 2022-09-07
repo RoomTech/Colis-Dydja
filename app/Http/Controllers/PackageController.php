@@ -17,7 +17,7 @@ class PackageController extends Controller
     public function index()
     {
         //
-        $packages = Package::all();
+        $packages = Package::orderBy('created_at','desc')->paginate(5);
         return view("pages.packages.index",["packages"=>$packages]);
     }
 
@@ -42,15 +42,15 @@ class PackageController extends Controller
     {
         //
         $validated = $request->validate([
-           'lastNameExpeditor'=>'required|string|max:155',
-           'firstNameExpeditor'=>'required|string|max:155',
-           'phoneNumberExpeditor'=>'required',
-           'lastNameRecipient'=>'required',
-           'firstNameRecipient'=>'required',
-           'phoneNumberRecipient'=>'required',
-           'packageStatus'=>'required',
-           'descriptionPackages'=>'required',
-           'pricesPackages'	=>'required',
+           'lastname_expeditor'=>'required|string|max:155',
+           'firstname_expeditor'=>'required|string|max:155',
+           'phone_expeditor'=>'required',
+           'lastname_recipient'=>'required',
+           'firstname_recipient'=>'required',
+           'phone_Recipient'=>'required',
+           'package_status'=>'required',
+           'description_package'=>'required',
+           'price_package'	=>'required',
            
         ]);
         //dd($validated);
@@ -58,15 +58,15 @@ class PackageController extends Controller
         //Traitement du formulaire
         $packages = Package::create([
            'identifier'=> $matricule,
-           'lastNameExpeditor'=>$request->lastNameExpeditor,
-           'firstNameExpeditor'=>$request->firstNameExpeditor,
-           'phoneNumberExpeditor'=>$request->phoneNumberExpeditor,
-           'lastNameRecipient'=>$request->lastNameRecipient,
-           'firstNameRecipient'=>$request->firstNameRecipient,
-           'phoneNumberRecipient'=>$request->phoneNumberRecipient,
-           'packageStatus'=>$request->packageStatus,
-           'descriptionPackages'=>$request->descriptionPackages,
-           'pricesPackages'	=>$request->pricesPackages,
+           'lastname_expeditor'=>$request->lastname_expeditor,
+           'firstname_expeditor'=>$request->firstname_expeditor,
+           'phone_expeditor'=>$request->phone_expeditor,
+           'lastname_recipient'=>$request->lastname_recipient,
+           'firstname_recipient'=>$request->firstname_recipient,
+           'phone_recipient'=>$request->phone_recipient,
+           'package_status'=>$request->package_status,
+           'description_Package'=>$request->description_Package,
+           'price_Package'	=>$request->prices_Packages,
            'user_id'=>Auth::user()->id,
         ]);
         //dd($package);
@@ -111,27 +111,27 @@ class PackageController extends Controller
     {
         //
         $validated = $request->validate([
-           'lastNameExpeditor'=>'required|string|max:155',
-           'firstNameExpeditor'=>'required|string|max:155',
-           'phoneNumberExpeditor'=>'required',
-           'lastNameRecipient'=>'required',
-           'firstNameRecipient'=>'required',
-           'phoneNumberRecipient'=>'required',
-           'packageStatus'=>'required',
-           'descriptionPackages'=>'required',
-           'pricesPackages'	=>'required',     
+           'lastname_expeditor'=>'required|string|max:155',
+           'firstname_expeditor'=>'required|string|max:155',
+           'phone_expeditor'=>'required',
+           'lastname_recipient'=>'required',
+           'firstname_recipient'=>'required',
+           'phone_Recipient'=>'required',
+           'package_status'=>'required',
+           'description_package'=>'required',
+           'price_package'	=>'required',  
         ]);
  
        $package->update([
-        "lastNameExpeditor" => $request->lastNameExpeditor,
-        "firstNameExpeditor" => $request->firstNameExpeditor,
-        "phoneNumberExpeditor" => $request->phoneNumberExpeditor,
-        "lastNameRecipient"=>$request->lastNameRecipient,
-        "firstNameRecipient"=>$request->firstNameRecipient,
-        "phoneNumberRecipient"=>$request->phoneNumberRecipient,
-        "packageStatus"=>$request->packageStatus,
-        "descriptionPackages"=>$request->descriptionPackages,
-        "pricesPackages"=>$request->pricesPackages
+           'lastname_expeditor'=>$request->lastname_expeditor,
+           'firstname_expeditor'=>$request->firstname_expeditor,
+           'phone_expeditor'=>$request->phone_expeditor,
+           'lastname_recipient'=>$request->lastname_recipient,
+           'firstname_recipient'=>$request->firstname_recipient,
+           'phone_recipient'=>$request->phone_recipient,
+           'package_status'=>$request->package_status,
+           'description_Package'=>$request->description_Package,
+           'price_Package'	=>$request->prices_Packages,
     ]);
         //dd($users);
        
