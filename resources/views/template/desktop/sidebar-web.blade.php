@@ -4,19 +4,20 @@
             {{ config('app.name') }}
         </a>
 
-        <x-component-web value="{{ isActive('home') ? 'bg-green-900' : '' }}" title="Tableau de bord" route="home">
+        <x-component-web value="{{ isActive('home') ? 'bg-green-900' : '' }}" title="Tableau de bord" route="home"
+            icon="home">
         </x-component-web>
 
         <x-component-web value="{{ isActive('compagny.*') ? 'bg-green-900' : '' }}" title="Compagnies"
-            route="compagnies.index">
+            route="compagnies.index" icon="truck">
         </x-component-web>
 
         <x-component-web value="{{ isActive('users.*') ? 'bg-green-900' : '' }}" title="Utilisateurs"
-            route="users.index">
+            route="users.index" icon="truck">
         </x-component-web>
 
-        <x-component-web value="{{ isActive('packages.*') ? 'bg-green-900' : '' }}" title="Colis"
-            route="packages.index">
+        <x-component-web value="{{ isActive('packages.*') ? 'bg-green-900' : '' }}" title="Colis" route="packages.index"
+            icon="truck">
         </x-component-web>
 
 

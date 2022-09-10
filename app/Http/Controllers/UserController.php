@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Role;
 use App\Notifications\UserNotification;
-
+use App\Http\Requests\UsersRequest;
+use App\Actions\users\CreateUserAction;
+use App\Actions\users\DeleteUserAction;
+use App\Actions\users\UpdateUserAction;
 
 class UserController extends Controller
 {
@@ -42,38 +45,22 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request,CreateUserAction $action)
     {
         //
-
-        $validated = $request->validate([
-        'lastname'=>'required|string|max:155',
-        'firstname'=>'required|string|max:155',
-        'email'=>'required|unique:users',
-        'phone_number'=>'required',
-        'profil'=>'required',
-        'compagnie_id'=>'required',
-        ]);
+       $data = array_merge($request->except("_token"),['role_id'=>Role::Station_manager]);
+      // dd($data);
+       $user = $action->handle($data);
+       
 
         //dd($validated);
-        $matricule = Str::random(5);
-        $passwordGenerate = Str::random(8);
+       
 
-        $users = User::create([
-            'identifier'=> $matricule,
-            'lastname'=>$request->lastname,
-            'firstname'=>$request->firstname,
-            'email'=>$request->email,
-            'phone_number'=>$request->phone_number,
-            'password'=>bcrypt($passwordGenerate),
-            'profil'=>$request->profil,
-            'compagnie_id'=>$request->compagny_id,
-            'role_id'=> Role::Station_manager,
-        ]);
+      
         //dd($users);
         //Notifions l'utilisateur créer avec son password
-        $users->notify(new UserNotification($passwordGenerate));
-        toast("L'employé" . $users->fullname . " enregistré avec succès vérifier votre e-mail ","success");
+       
+        toast("L'employé" . $user->fullname . " enregistré avec succès vérifier votre e-mail ","success");
         return redirect()->route('users.index');
     }
 
@@ -110,25 +97,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request,User $user,UpdateUserAction $action)
     {
-        //
-        
-      /*  $validated = $request->validate([
-        'lastname'=>'required|string|max:155',
-        'firstname'=>'required|string|max:155',
-        'email'=>'required|unique:users',
-        'phone_number'=>'required',
-        'profil'=>'required',
-        'compagnie_id'=>'required',
-        ]);*/
-
-        //dd($validated);
-        //dd("mum");
-        $matricule = Str::random(5);
-        $passwordGenerate = Str::random(8);
-
-      $users = $user->update([
+        //   
+      /*$users = $user->update([
             'lastname'=>$request->lastname,
             'firstname'=>$request->firstname,
             'email'=>$request->email,
@@ -137,8 +109,9 @@ class UserController extends Controller
             'profil'=>$request->profil,
             'compagnie_id'=>$request->compagny_id,
             'role_id'=> Role::Station_manager,
-        ]);
+        ]);*/
        //dd($users);
+       $user = $action->update($user,$request->except("_token"));
         toast(" Mise à jour effectué avec succès ","success");
         return redirect()->route('users.index');
     }
@@ -149,10 +122,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $user,DeleteUserAction $action)
     {
         //
-        $user->delete();
+       $action->execute($user);
         toast("Suppression effectué avec succès","error");
         return redirect()->route('users.index');
     }

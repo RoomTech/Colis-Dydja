@@ -4,13 +4,13 @@ use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 class CreateRoleAction{
-    public function handle(array $data):Role{
+    public function handle(Role $role,array $data):Role{
         /**
-         * Assure que tt les infos se trouve das la base de donnéé
-         * fait la sauvegarde
+         * Mise à jour des data
+         * 
          */
        DB::beginTransaction();
-       $role = Role::create(['name'=>$data['name']]);
+      $role->update(['name'=>$data['name']]);
 
        DB::commit();
        return $role;
