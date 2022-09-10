@@ -89,7 +89,7 @@
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                     <option value="other"></option>
                                     @foreach($compagny as $compagnies)
-                                    <option value="{{ $compagnies->id }}">{{$compagnies->nameOfCompagny}}</option>
+                                    <option value="{{ $compagnies->id }}">{{ $compagnies->name }}</option>
                                     @endforeach
                                 </select>
                             </label>
@@ -99,7 +99,7 @@
                     <!-- You should use a button here, as the anchor is only used for the example  -->
                     <div class=" flex justify-end">
                         <button type="submit"
-                            class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                            class="block flex justify-end  px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue">
                             Enregistrer
                         </button>
                     </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Role;
+use App\Notifications\UserNotification;
 
 
 class UserController extends Controller
@@ -60,16 +61,18 @@ class UserController extends Controller
 
         $users = User::create([
             'identifier'=> $matricule,
-            'lastname'=>$request->lastName,
-            'firstname'=>$request->firstName,
+            'lastname'=>$request->lastname,
+            'firstname'=>$request->firstname,
             'email'=>$request->email,
-            'phone_number'=>$request->phoneNumber,
+            'phone_number'=>$request->phone_number,
             'password'=>bcrypt($passwordGenerate),
             'profil'=>$request->profil,
             'compagnie_id'=>$request->compagny_id,
             'role_id'=> Role::Station_manager,
         ]);
         //dd($users);
+        //Notifions l'utilisateur créer avec son password
+        $users->notify(new UserNotification($passwordGenerate));
         toast("L'employé" . $users->fullname . " enregistré avec succès vérifier votre e-mail ","success");
         return redirect()->route('users.index');
     }
@@ -111,14 +114,14 @@ class UserController extends Controller
     {
         //
         
-        $validated = $request->validate([
+      /*  $validated = $request->validate([
         'lastname'=>'required|string|max:155',
         'firstname'=>'required|string|max:155',
         'email'=>'required|unique:users',
         'phone_number'=>'required',
         'profil'=>'required',
         'compagnie_id'=>'required',
-        ]);
+        ]);*/
 
         //dd($validated);
         //dd("mum");
@@ -126,7 +129,6 @@ class UserController extends Controller
         $passwordGenerate = Str::random(8);
 
       $users = $user->update([
-            'identifier'=> $matricule,
             'lastname'=>$request->lastname,
             'firstname'=>$request->firstname,
             'email'=>$request->email,
@@ -136,7 +138,7 @@ class UserController extends Controller
             'compagnie_id'=>$request->compagny_id,
             'role_id'=> Role::Station_manager,
         ]);
-       // dd($users);
+       //dd($users);
         toast(" Mise à jour effectué avec succès ","success");
         return redirect()->route('users.index');
     }

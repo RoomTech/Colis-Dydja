@@ -65,8 +65,8 @@ class PackageController extends Controller
            'firstname_recipient'=>$request->firstname_recipient,
            'phone_recipient'=>$request->phone_recipient,
            'package_status'=>$request->package_status,
-           'description_Package'=>$request->description_Package,
-           'price_Package'	=>$request->prices_Packages,
+           'description'=>$request->description,
+           'price'	=>$request->price,
            'user_id'=>Auth::user()->id,
         ]);
         //dd($package);
@@ -110,7 +110,7 @@ class PackageController extends Controller
     public function update(Request $request, Package $package)
     {
         //
-        $validated = $request->validate([
+       /* $validated = $request->validate([
            'lastname_expeditor'=>'required|string|max:155',
            'firstname_expeditor'=>'required|string|max:155',
            'phone_expeditor'=>'required',
@@ -120,7 +120,7 @@ class PackageController extends Controller
            'package_status'=>'required',
            'description_package'=>'required',
            'price_package'	=>'required',  
-        ]);
+        ]);*/
  
        $package->update([
            'lastname_expeditor'=>$request->lastname_expeditor,
@@ -129,9 +129,9 @@ class PackageController extends Controller
            'lastname_recipient'=>$request->lastname_recipient,
            'firstname_recipient'=>$request->firstname_recipient,
            'phone_recipient'=>$request->phone_recipient,
-           'package_status'=>$request->package_status,
-           'description_Package'=>$request->description_Package,
-           'price_Package'	=>$request->prices_Packages,
+           'status'=>$request->status,
+           'description'=>$request->description,
+           'price'	=>$request->price,
     ]);
         //dd($users);
        

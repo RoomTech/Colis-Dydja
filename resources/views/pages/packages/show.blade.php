@@ -73,7 +73,7 @@
                             <div class="flex justify-between space-x-3 p-3 ">
                                 <div class="w-full space-y-4">
                                     <label for="">Prix du colis : </label>
-                                    <span class="text-bold-100 px-2 py-1 font-semibold"> {{ $package->price_package }}
+                                    <span class="text-bold-100 px-2 py-1 font-semibold"> {{ $package->price }}
                                         Fcfa</span>
 
                                 </div>
@@ -81,7 +81,7 @@
                                     <label for="">Status d'envoi du colis : </label>
                                     <span
                                         class="px-2 py-1 font-semibold leading-tight text-green-700
-                                    bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{ $package->package_status }}</span>
+                                    bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">{{ $package->status }}</span>
                                 </div>
                             </div>
 
@@ -89,7 +89,7 @@
                                 <div class="w-full space-y-6 space-x-3">
                                     <label for="">Description du colis : </label>
                                     <span
-                                        class="text-bold-100 px-2 py-1 font-semibold">{{ $package->description_package }}</span>
+                                        class="text-bold-100 px-2 py-1 font-semibold">{{ $package->description }}</span>
                                 </div>
                             </div>
                             <!-- You should use a button here, as the anchor is only used for the example  -->

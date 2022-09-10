@@ -89,7 +89,7 @@
                                     class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                                     <option value="other"></option>
                                     @foreach($compagny as $compagnies)
-                                    <option value="{{ $compagnies->id }}">{{$compagnies->nameOfCompagny}}</option>
+                                    <option value="{{ $compagnies->id }}">{{$compagnies->name}}</option>
                                     @endforeach
                                 </select>
                             </label>

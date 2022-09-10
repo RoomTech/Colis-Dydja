@@ -13,7 +13,7 @@
     </div>
     <!-- General elements -->
     <h3 class="mb-1 text-xl font-semibold text-gray-600 dark:text-gray-300">
-        Ajouter un colis
+        Ajouter un nouveau colis
     </h3>
 </div>
 <div class="flex items-center p-6 bg-gray-50 dark:bg-gray-900">
@@ -109,9 +109,9 @@
                                         </span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="1000" name="price_package" />
+                                            placeholder="1000" name="price" />
                                     </label>
-                                    @error('price_packages')
+                                    @error('price')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -143,7 +143,7 @@
                                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                             rows="3" placeholder="Enter some long form content."></textarea>
                                     </label>
-                                    @error('description_package')
+                                    @error('description')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
