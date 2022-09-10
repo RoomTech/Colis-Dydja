@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Role;
 use App\Models\Compagny;
 use App\Models\Package;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,4 +56,13 @@ class User extends Authenticatable
     public function package(){
         return $this->belongsTo(Package::class);
     }
+
+
+    public function avatar() : Attribute
+    {
+      return new Attribute(
+        get : fn() => "https://ui-avatars.com/api/?name={$this->fullname}?color=7F9CF5&background=4287f5",
+      );
+    }
+
 }

@@ -12,8 +12,8 @@ class Role extends Model
 
     //Creons nos rôles 
 
-    const Administrator = 1;
-    const Station_manager = 2;
+    const ADMIN = 1;
+    const MANAGER = 2;
     const Convoyer = 3;
     
     protected $fillable = ["name"];

@@ -17,20 +17,23 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-         \App\Models\User::create([
-            'identifier'=>"CM08",
-            'lastname'=>"Konan",
-            'firstname'=>"Jean",
-            'email' => 'test@example.com',
-            'phone_number'=>"+22509876543",
-            'password'=> bcrypt("password"),
-            "profil"=>"Employé",
-            "role_id"=>Role::Administrator,
-         ]);
+     
 
-         $this->call([
+      $this->call([
         RoleSeeder::class,
         StreetSeeder::class
       ]);
+
+      \App\Models\User::create([
+        'identifier'=>"CM08",
+        'lastname'=>"Konan",
+        'firstname'=>"Jean",
+        'email' => 'test@example.com',
+        'phone_number'=>"+22509876543",
+        'password'=> bcrypt("password"),
+        "profil"=>"Employé",
+        "role_id"=>Role::ADMIN,
+     ]);
+     
     }
 }

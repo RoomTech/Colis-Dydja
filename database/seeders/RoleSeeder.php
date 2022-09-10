@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
    /* const Station_manager = 2;
     const Convoyer = 3;*/
         \App\Models\Role::create([
-            "id"=>Role::Administrator,
+            "id"=>Role::ADMIN,
             "name"=>"Admin fonctionnel"
         ]);
 
