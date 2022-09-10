@@ -58,9 +58,9 @@
                                     <p class="font-semibold">
                                         {{ $compagny->name}}
                                     </p>
-                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    <!--<p class="text-xs text-gray-600 dark:text-gray-400">
                                         10x Developer
-                                    </p>
+                                    </p>-->
                                 </div>
                             </div>
                         </td>
