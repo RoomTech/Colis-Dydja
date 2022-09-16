@@ -25,9 +25,8 @@
                     <div class="flex justify-center">
                         <form action="{{ route('packages.update',$package) }}" method="post">
                             @csrf
-
+                            @method('PUT')
                             <div class="flex justify-between space-x-4 p-3 ">
-
                                 <div class=" space-y-4">
                                     <label class="block text-sm">
                                         <span class="text-gray-700 dark:text-gray-400">Nom de
@@ -113,9 +112,10 @@
                                         </span>
                                         <input
                                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                            placeholder="1000" name="price" value="{{ $package->price }}" />
+                                            placeholder="1000" name="price_package"
+                                            value="{{ $package->price_package }}" />
                                     </label>
-                                    @error('price')
+                                    @error('price_package')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -126,14 +126,14 @@
                                         </span>
                                         <select
                                             class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                            name="status" value="{{ $package->status }}">
+                                            name="package_status" value="{{ $package->package_status }}">
                                             <option value="other"></option>
                                             <option value="en cours">En cours
                                             </option>
                                             <option value="terminé">Terminé</option>
                                         </select>
                                     </label>
-                                    @error('status')
+                                    @error('package_status')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -143,11 +143,11 @@
                                 <div class="w-full space-y-6 space-x-3">
                                     <label class="block text-sm">
                                         <span class="text-gray-700 dark:text-gray-400">Description du colis</span>
-                                        <textarea name="description" value="{{ $package->description }}"
+                                        <textarea name="description_package" value="{{ $package->description_package }}"
                                             class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                             rows="3" placeholder="Enter some long form content."></textarea>
                                     </label>
-                                    @error('description')
+                                    @error('description_package')
                                     <span class="text-red-500">{{ $message }}</span>
                                     @enderror
                                 </div>

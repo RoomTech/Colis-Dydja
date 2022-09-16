@@ -30,7 +30,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" name="lastname" required />
+                                    placeholder="Jane" name="lastname" value="{{ old('lastname') }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -38,7 +38,7 @@
                                 <span class="text-gray-700 dark:text-gray-400">Prénom</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="firstname" required />
+                                    placeholder="Doe" name="firstname" value="{{ old('firstname') }}" required />
                             </label>
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -46,8 +46,12 @@
                                 <span class="text-gray-700 dark:text-gray-400">Email</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="joe@gmail.com" name="email" required />
+                                    placeholder="joe@gmail.com" name="email" value="{{ old('email') }}" required />
                             </label>
+
+                            @error('email')
+                            <div class="text-red-600 text-sm-center">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -57,8 +61,11 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="XXXXXXx" name="phone_number" />
+                                    placeholder="XXXXXXx" name="phone_number" value="{{ old('phone_number') }}" />
                             </label>
+                            @error('phone_number')
+                            <div class="text-red-600 text-sm-center">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="w-full space-y-4">
                             <label class="block  text-sm">
@@ -66,9 +73,9 @@
                                     Status de l'employé
                                 </span>
                                 <select
-                                    class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    class="block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                                     name="profil">
-                                    <option value="other"></option>
+                                    <option value=" other"></option>
                                     <option value="Employé">Employé</option>
                                     <option value="Licencié">Licencié</option>
                                     <option value="En congé">En congé</option>

@@ -51,7 +51,7 @@ class UserController extends Controller
        $data = array_merge($request->except("_token"),['role_id'=>Role::Station_manager]);
       // dd($data);
        $user = $action->handle($data);
-       
+      
 
         //dd($validated);
        

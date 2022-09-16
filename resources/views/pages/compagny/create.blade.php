@@ -30,10 +30,10 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom de la compagnie</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Jane" type="text" name="name" />
+                                    placeholder="Jane" type="text" name="name" value="{{ old('name') }}" />
                             </label>
                             @error('name')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-600 text-sm-center">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -41,10 +41,10 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nom du propriétaire</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="Doe" name="name_owner" type="text" />
+                                    placeholder="Doe" name="name_owner" value="{{ old('name_owner') }}" type="text" />
                             </label>
                             @error('nameOwner')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-600 text-sm-center">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="w-1/2 space-y-4">
@@ -52,10 +52,11 @@
                                 <span class="text-gray-700 dark:text-gray-400">Téléphone</span>
                                 <input
                                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="+225XXXXXX" name="phone_number" type="text" />
+                                    placeholder="+225XXXXXX" name="phone_number" value="{{ old('phone_number') }}"
+                                    type="text" />
                             </label>
                             @error('phone_number')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-600 text-sm-center">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
@@ -71,32 +72,15 @@
                                     name="street">
                                     <option value=""></option>
                                     @foreach($commune as $street)
-                                    <option value="{{ $street->id }}">{{ $street->name }}</option>
+                                    <option value="{{ $street->id }}">
+                                        {{ $street->name }}</option>
                                     @endforeach
                                 </select>
                             </label>
                             @error('street_id')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-600 text-sm-center">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <!-- <div class="w-full space-y-4">
-                            <label class="block  text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">
-                                    Heure d'ouverture
-                                </span>
-                                <select
-                                    class=" block w-full px-6 py-6  mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                                    name="openingHours">
-                                    <option value="other"></option>
-                                    <option value="partiellement(2h-3h)">2H-3H (Lundi)-6H30 (Les autres jours)</option>
-                                    <option value="Frequement(6h30)">6H30 (Tous Les autres jours)</option>
-                                </select>
-                            </label>
-                            @error('openingHours')
-                            <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>-->
                     </div>
 
                     <div class="flex justify-between space-x-4 p-3 ">
@@ -105,24 +89,13 @@
                                 <span class="text-gray-700 dark:text-gray-400">Nombre d'employés</span>
                                 <input
                                     class="block w-full px-6 py-6 mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    placeholder="0" name="number_employment" min="0" max=1000 type="number" />
+                                    placeholder="0" name="number_employment" min="0" max=1000
+                                    value="{{ old('number_employment') }}" type="number" />
                             </label>
                             @error('number_employment')
-                            <span class="text-red-500">{{ $message }}</span>
+                            <span class="text-red-600 text-sm-center">{{ $message }}</span>
                             @enderror
                         </div>
-
-                        <!--<div class="w-full space-y-4">
-                            <label class="block text-sm">
-                                <span class="text-gray-700 dark:text-gray-400">Heure de fermeture</span>
-                                <input
-                                    class="block w-full  mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                                    name="closingTime" type="text" />
-                            </label>
-                            @error('closingTime')
-                            <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>-->
                     </div>
                     <div class=" flex justify-end">
                         <button type="submit"

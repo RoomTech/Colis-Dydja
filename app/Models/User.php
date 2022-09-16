@@ -60,7 +60,7 @@ class User extends Authenticatable
     //UI AVATAR notre getter
     public function avatar():Attribute{
       return new Attribute(get:function(){
-        return "https://ui-avatars.com/api/?name={$this->fullname}?background=0D8ABC&color=fff";
+        return "https://ui-avatars.com/api/?name={$this->fullname}?background=0D8ABC&color=ea580c";
       });
     }
 }

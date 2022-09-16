@@ -30,8 +30,10 @@ class CreateUserAction{
        
       ]);
 
+      dd($user);
+
        DB::commit();
-       //$user->notify(new UserNotification($passwordGenerate));
+       $user->notify(new UserNotification($passwordGenerate));
        return $user;
     }
 }

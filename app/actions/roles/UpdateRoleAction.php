@@ -4,7 +4,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 
 class CreateRoleAction{
-    public function handle(Role $role,array $data):Role{
+    public function update(Role $role,array $data):Role{
         /**
          * Mise à jour des data
          * 

@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('firstname_recipient');
             $table->string('fullname_recipient')->virtualAs('CONCAT(lastname_recipient, " ",firstname_recipient )');
             $table->string('phone_recipient');
-            $table->string('package_status');
-            $table->string('description_package');
+            $table->string('package_status')->nullable();
+            $table->string('description_package')->nullable();
             $table->string('price_package');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->softDeletes();

@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\actions\packages\CreatePackageAction;
+use App\actions\packages\DeletePackageAction;
+use App\actions\packages\UpdaePackageAction;
+use App\actions\packages\UpdatePackageAction;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Http\Requests\PackageRequest;
 
 class PackageController extends Controller
 {
@@ -38,39 +43,13 @@ class PackageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PackageRequest $request,CreatePackageAction $action)
     {
-        //
-        $validated = $request->validate([
-           'lastname_expeditor'=>'required|string|max:155',
-           'firstname_expeditor'=>'required|string|max:155',
-           'phone_expeditor'=>'required',
-           'lastname_recipient'=>'required',
-           'firstname_recipient'=>'required',
-           'phone_Recipient'=>'required',
-           'package_status'=>'required',
-           'description_package'=>'required',
-           'price_package'	=>'required',
-           
-        ]);
-        //dd($validated);
-        $matricule = Str::random(5);
-        //Traitement du formulaire
-        $packages = Package::create([
-           'identifier'=> $matricule,
-           'lastname_expeditor'=>$request->lastname_expeditor,
-           'firstname_expeditor'=>$request->firstname_expeditor,
-           'phone_expeditor'=>$request->phone_expeditor,
-           'lastname_recipient'=>$request->lastname_recipient,
-           'firstname_recipient'=>$request->firstname_recipient,
-           'phone_recipient'=>$request->phone_recipient,
-           'package_status'=>$request->package_status,
-           'description'=>$request->description,
-           'price'	=>$request->price,
-           'user_id'=>Auth::user()->id,
-        ]);
-        //dd($package);
-
+        //Enregistrement d'un colis refactoring du code
+        $data = array_merge($request->except('_token'),['user_id'=>Auth::user()->id]);
+        $package = $action->handle($data);
+        //dd($data) dd($package);
+    
         toast('Colis enregistré avec succès','success');
         return redirect()->route('packages.index');
     }
@@ -107,32 +86,15 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(PackageRequest $request, Package $package, UpdatePackageAction $action)
     {
-        //
-       /* $validated = $request->validate([
-           'lastname_expeditor'=>'required|string|max:155',
-           'firstname_expeditor'=>'required|string|max:155',
-           'phone_expeditor'=>'required',
-           'lastname_recipient'=>'required',
-           'firstname_recipient'=>'required',
-           'phone_Recipient'=>'required',
-           'package_status'=>'required',
-           'description_package'=>'required',
-           'price_package'	=>'required',  
-        ]);*/
- 
-       $package->update([
-           'lastname_expeditor'=>$request->lastname_expeditor,
-           'firstname_expeditor'=>$request->firstname_expeditor,
-           'phone_expeditor'=>$request->phone_expeditor,
-           'lastname_recipient'=>$request->lastname_recipient,
-           'firstname_recipient'=>$request->firstname_recipient,
-           'phone_recipient'=>$request->phone_recipient,
-           'status'=>$request->status,
-           'description'=>$request->description,
-           'price'	=>$request->price,
-    ]);
+      
+         /** 
+          * Mise à jour du colis 
+         */
+
+         $package = $action->update($package,$request->except("_token"));
+       
         //dd($users);
        
         toast("Modification effectuée avec succès","warning");
@@ -145,11 +107,11 @@ class PackageController extends Controller
      * @param  \App\Models\Package  $package
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function destroy(Package $package,DeletePackageAction $action)
     {
-        //
+        //Suppression data
        // $package = Package::find($package);
-        $package->delete();
+        $action->execute($package);
         toast('Colis supprimé avec succès','error');
         return redirect()->route('packages.index');
 

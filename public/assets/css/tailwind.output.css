@@ -28,6 +28,16 @@ pre {
     font-size: 1em;
 }
 
+.font-serif {
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+.font-sans {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
 a {
     background-color: transparent;
 }
@@ -37,6 +47,34 @@ abbr[title] {
     text-decoration: underline;
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
+}
+.text-gray-500 {
+    color: rgb(107 114 128);
+}
+.text-current {
+    color: currentColor;
+}
+.text-base {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+}
+
+.text-slate-400 {
+    color: rgb(148 163 184);
+}
+
+.text-sm {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+}
+
+.text-xs {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
+}
+.text-lg {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.75rem; /* 28px */
 }
 
 b,
@@ -121,7 +159,6 @@ button:-moz-focusring {
 fieldset {
     padding: 0.35em 0.75em 0.625em;
 }
-
 legend {
     box-sizing: border-box;
     color: inherit;
@@ -765,6 +802,10 @@ video {
     --bg-opacity: 1;
     background-color: #6c2bd9;
     background-color: rgba(108, 43, 217, var(--bg-opacity));
+}
+
+.hover\:uppercase:hover {
+    text-transform: uppercase;
 }
 
 .focus\:bg-white:focus {
@@ -1603,6 +1644,10 @@ video {
     left: 0;
 }
 
+.shadow-lg {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
 .shadow-xs {
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
@@ -1623,6 +1668,10 @@ video {
 
 .shadow-inner {
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-red-600 {
+    --tw-shadow-color: #dc2626;
 }
 
 .fill-current {
@@ -1751,6 +1800,10 @@ video {
 .text-blue-600 {
     --text-opacity: 1;
     color: #2563eb;
+}
+
+.text-red-600 {
+    color: #dc2626;
 }
 
 .text-purple-100 {

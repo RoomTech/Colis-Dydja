@@ -37,7 +37,7 @@
                         <th class="px-4 py-3">Actions</th>
                     </tr>
                 </thead>
-                @foreach($users as $user)
+                @forelse($users as $user)
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
 
                     <tr class="text-gray-700 dark:text-gray-400">
@@ -75,9 +75,6 @@
                         <td class="px-4 py-3 text-sm">
                             {{$user->phone_number}}
                         </td>
-
-
-
                         <td class="px-4 py-3">
                             <div class="flex items-center space-x-4 text-sm">
                                 <button
@@ -117,7 +114,9 @@
                         </td>
                     </tr>
                 </tbody>
-                @endforeach
+                @empty
+                <p>No users</p>
+                @endforelse
             </table>
             <div
                 class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-3 dark:text-gray-400 dark:bg-gray-800">

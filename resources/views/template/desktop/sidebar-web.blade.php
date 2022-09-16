@@ -1,25 +1,28 @@
-<aside class="z-20 hidden w-64 overflow-y-auto bg-orange-400 dark:bg-gray-800 md:block flex-shrink-0">
-    <div class="py-4 text-gray-500 dark:text-gray-400 mb-3">
-        <a class="ml-6 text-lg font-bold text-green-900 " href="#">
+<aside class="z-20 hidden shadow-lg w-64 overflow-y-auto bg-orange-400 dark:bg-gray-800 md:block flex-shrink-0">
+    <div class="py-4  text-center text-gray-500 dark:text-gray-400 mb-4">
+        <a class="ml-2 text-2xl uppercase font-bold text-green-900 " href="#">
+            <!--text-base text-white capitalize font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-full w-full p-2 shadow-lg hover:box-content rounded-->
             {{ config('app.name') }}
         </a>
-
-        <x-component-web value="{{ isActive('home') ? 'bg-green-900' : '' }}" title="Tableau de bord" route="home"
-            icon="home">
+        <x-component-web
+            value="{{ isActive('home') ? 'text-base text-white capitalize hover:uppercase font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-40 w-40 p-2 shadow-lg hover:box-content rounded' : '' }}"
+            title="Tableau de bord" route="home" icon="home">
         </x-component-web>
 
-        <x-component-web value="{{ isActive('compagny.*') ? 'bg-green-900' : '' }}" title="Compagnies"
-            route="compagnies.index" icon="truck">
+        <x-component-web
+            value="{{ isActive('compagnies.*') ? 'text-base text-white capitalize hover:uppercase font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-40 w-full p-2 shadow-lg text-center hover:box-content rounded' : '' }}"
+            title="Compagnies" route="compagnies.index" icon="truck">
         </x-component-web>
 
-        <x-component-web value="{{ isActive('users.*') ? 'bg-green-900' : '' }}" title="Utilisateurs"
-            route="users.index" icon="truck">
+        <x-component-web
+            value="{{ isActive('users.*') ? 'text-base text-white capitalize hover:uppercase font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-full w-full p-2 shadow-lg hover:box-content rounded' : '' }}"
+            title="Utilisateurs" route="users.index" icon="user">
         </x-component-web>
 
-        <x-component-web value="{{ isActive('packages.*') ? 'bg-green-900' : '' }}" title="Colis" route="packages.index"
-            icon="truck">
+        <x-component-web
+            value="{{ isActive('packages.*') ? 'text-base text-white capitalize hover:uppercase font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-full w-full p-2 shadow-lg hover:box-content rounded' : '' }}"
+            title="Colis" route="packages.index" icon="colis">
         </x-component-web>
-
 
 
 

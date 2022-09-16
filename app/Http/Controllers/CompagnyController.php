@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\actions\compagny\CreateCompagnyAction;
+use App\actions\compagny\DeleteCompagnyAction;
+use App\actions\compagny\UpdateCompagnyAction;
 use App\Models\Compagny;
 use App\Models\Street;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\CompagnyRequest;
 
 class CompagnyController extends Controller
 {
@@ -40,43 +44,27 @@ class CompagnyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompagnyRequest $request,CreateCompagnyAction $action)
     {
-        //	Validation des champs
-      $validated = $request->validate([
-            'name' => 'required|unique:compagnies|max:255',
-            'name_owner' => 'required',
-           // 'street_id'=>'required',
-            'number_employment'=>'required|integer',
-            'phone_number'=>'required',
-        ]);
-        
-        /**
+       /**
          * Recupere l'id de la commune selectionné qui n'est pas dans la table compagnie
          * Vue que c'est une relation many to many 
          * je donne un name dans le select de la street
          */
-        $commune = Street::find($request->street);
-        $matricule = Str::random(5);
-
+       $commune = Street::find($request->street);
+        //dd($commune);
        //Traitement des data 
-      $compagnies = Compagny::create([
-            'identifier'=>$matricule,
-            'name'=>$request->name,
-            'name_owner'=>$request->name_owner,
-            //'street_id'=>$request->street_id,
-            'number_employment'=>$request->number_employment,
-            'phone_number'=>$request->phone_number,
-       ]);
-        //dd($compagnie);dd($request);
+      $data = array_merge($request->except("_token"));
+      $compagnies = $action->handle($data);
+        //dd($compagnies);//dd($request);
        
-        /**
+         /**
          * Lions nos deux tables via attach
          * streets() la methode qui se trouve in Compagny
          * $commune la variable qui contient la requête
          * on attache la commune a la compagnie
          */
-        $compagnies->streets()->attach($commune);
+         $compagnies->streets()->attach($commune);
        //session()->flash("success","Inscription effectué avec succès!");
        toast(' La compagnie ' . $request->name .' a été enregistré','success');
 
@@ -118,25 +106,11 @@ class CompagnyController extends Controller
      * @param  \App\Models\Compagny  $compagny
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Compagny $compagny)
+    public function update(CompagnyRequest $request, Compagny $compagny,UpdateCompagnyAction $action)
     {
-          //	Validation des champs du form pour la mise à jour 
-          $validated = $request->validate([
-            'name' => 'required|unique:compagnies|max:255',
-            'name_owner' => 'required',
-            'street_id'=>'required',
-            'number_employment'=>'required|integer',
-            'phone_number'=>'required',
-        ]);
-        
+          
         //Traitement du form pour la mise à jour
-        $users = $compagny->update([
-            "name" => $request->name,
-            "name_owner" => $request->name_owner,
-            "street_id" => $request->street_id,
-            "number_employment" => $request->number_employment,
-            "phone_number" => $request->phone_number,
-         ]);
+         $compagnies = $action->update($compagny,$request->except("_token"));
         // dd($users);
          toast("Mise à jour effectué avec succès!","warning");
          return redirect()->route('compagnies.index');
@@ -148,11 +122,11 @@ class CompagnyController extends Controller
      * @param  \App\Models\Compagny  $compagny
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Compagny $compagny)
+    public function destroy(Compagny $compagny,DeleteCompagnyAction $action)
     {
-        //Suppression d'une compagnie
-        $compagny->delete();
-        toast("La compagnie" . $compagny->name . "supprimé avec succès!","error");
+        //Suppression d'une compagnie via le refactoring
+       $action->execute($compagny);
+        toast("La compagnie " . $compagny->name . " supprimé avec succès!","error");
         return redirect()->route('compagnies.index');
     }
 }
