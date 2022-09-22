@@ -1,11 +1,11 @@
-<aside class="z-20 hidden shadow-lg w-64 overflow-y-auto bg-orange-400 dark:bg-gray-800 md:block flex-shrink-0">
+<aside class="z-20 hidden shadow-lg w-64 overflow-y-auto bg-emerald-500 dark:bg-gray-800 md:block flex-shrink-0">
     <div class="py-4  text-center text-gray-500 dark:text-gray-400 mb-4">
         <a class="ml-2 text-2xl uppercase font-bold text-green-900 " href="#">
             <!--text-base text-white capitalize font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-full w-full p-2 shadow-lg hover:box-content rounded-->
             {{ config('app.name') }}
         </a>
         <x-component-web
-            value="{{ isActive('home') ? 'text-base text-white capitalize hover:uppercase font-serif bg-red-600 hover:bg-purple-700 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-40 w-40 p-2 shadow-lg hover:box-content rounded' : '' }}"
+            value="{{ isActive('home') ? 'text-base text-white capitalize font-serif bg-blue-600 hover:bg-blue-400 active:bg-orange-100 focus:outline-none focus:ring focus:ring-green-100 box-content h-40 w-48 p-2 m-2 shadow-lg hover:box-content rounded' : '' }}"
             title="Tableau de bord" route="home" icon="home">
         </x-component-web>
 
