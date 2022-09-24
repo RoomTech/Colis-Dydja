@@ -1,8 +1,8 @@
 @extends('template.layouts.master')
 @section('content')
 
-<div class="container grid px-6 mx-auto">
-    <!-- CTA -->
+<!-- <div class="container grid px-6 mx-auto">
+    
     <div class='flex justify-end'>
         <div class="px-6 my-6">
             <a href="{{ route('compagnies.index') }}"
@@ -59,7 +59,7 @@
                                 </div>
 
                             </div>
-                            <!-- You should use a button here, as the anchor is only used for the example  -->
+                           
                             <div class="flex justify-end">
                                 <button
                                     class="block flex justify-end px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-lg active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
@@ -72,5 +72,75 @@
             </div>
         </div>
     </div>
+</div> -->
+
+
+
+
+<div class="container grid p-2 mx-auto">
+
+    <div class='flex justify-end'>
+        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            <!-- Détails des informations sur l'employé -->
+        </h4>
+    </div>
+
+</div>
+
+<div
+    class="flex items-center justify-center w-full p-6 sm:p-10 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 p-1">
+    <div class="bg-white shadow-md mt-8 overflow-hidden sm:rounded-lg">
+
+        <div class="p-4 sm:px-6 bg-stone-100">
+            <h3 class="text-lg leading-6 font-medium text-gray-900"> Détails sur la compagnie {{ $compagny->name }}
+            </h3>
+            <!--   <p class="mt-1 max-w-2xl text-sm text-gray-500"></p>-->
+        </div>
+        <div class="border-t border-gray-200 p-4 sm:px-6">
+            <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+
+                <div class="sm:col-span-1">
+                    <dt class="text-sm font-medium text-gray-500">Matricule</dt>
+                    <dd class="mt-1 text-lg  text-bold-100  font-semibold leading-tight text-green-700">
+                        {{ $compagny->identifier}} </dd>
+                </div>
+                <div class="sm:col-span-1">
+                    <dt class="text-sm font-medium text-gray-500">Propriétaire de la compagnie</dt>
+                    <dd class="mt-1 text-lg text-gray-900"> {{ $compagny->name_owner }}</dd>
+                </div>
+
+                <div class="sm:col-span-1">
+                    <dt class="text-sm font-medium text-gray-500">Nombre de personnel</dt>
+                    <dd class="mt-1 text-lg text-gray-900"> {{ $compagny->number_employment }}</dd>
+                </div>
+                <div class="sm:col-span-1">
+                    <dt class="text-sm font-medium text-gray-500">Numéro </dt>
+                    <dd class="mt-1 text-lg text-gray-900">{{ $compagny->phone_number }}
+                    </dd>
+                </div>
+            </dl>
+        </div>
+
+        <div class="border-t border-gray-200 p-1 bg-stone-100">
+            <div class='flex justify-end mt-1'>
+                <div class="p-2">
+                    <a href="#"
+                        class="flex items-center shadow-lg justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-sky-400 border border-transparent rounded-lg active:bg-green-300 hover:bg-green-300 focus:outline-none focus:shadow-outline-purple">
+                        Exporter
+                        <span class="ml-2" aria-hidden="true">+</span>
+                    </a>
+                </div>
+                <div class="p-2">
+                    <a href=" {{ route('compagnies.index') }}"
+                        class="flex items-center shadow-lg justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-neutral-500 border border-transparent rounded-lg active:bg-green-300 hover:bg-green-300 focus:outline-none focus:shadow-outline-purple">
+                        Retour
+                        <span class="ml-2" aria-hidden="true">+</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 @endsection
